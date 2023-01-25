@@ -1,0 +1,40 @@
+int ::= [0-9]+
+
+float ::= int "." (int*)
+
+signedint ::= "-"? int
+
+signedfloat ::= "-"? float
+
+number ::= int
+           | float
+           | signedint
+           | signedfloat
+
+char ::= "'" ([a-zA-Z] | specialchar) "'"
+
+specialchar ::= [&#{}()[]-|_^@°+=€£%*?,.;:/!~<>" "]
+
+string ::= "\"" ([a-zA-Z0-9] | specialchar)* "\""
+
+identifier ::= [a-zA-Z] ([a-zA-Z0-9] | "-" | "_" )*
+
+type ::= identifier
+
+var_assignement ::= type identifier "=" expresssion
+
+expresssion ::= unary_expression | binary_expression
+
+binary_expression ::= unary_expression operator expresssion
+
+operator ::= [+ - * / %  ** == != > < >= <= || && !| !& ^ ]
+
+unary_expression ::= identifier | value
+
+value ::= number | char | specialchar | string
+
+print_statement ::= "print(" expresssion ")"
+
+statement ::= var_assignement | print_statement
+
+

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bible-compiler/lexer"
+	"strings"
 	"testing"
 )
 
@@ -26,10 +27,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple char", func(t *testing.T) {
@@ -51,10 +56,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple string", func(t *testing.T) {
@@ -77,10 +86,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple float", func(t *testing.T) {
@@ -103,10 +116,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple long", func(t *testing.T) {
@@ -129,10 +146,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple double", func(t *testing.T) {
@@ -155,10 +176,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple bool", func(t *testing.T) {
@@ -181,10 +206,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test simple array", func(t *testing.T) {
@@ -207,10 +236,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test multi dim array", func(t *testing.T) {
@@ -233,10 +266,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test array string", func(t *testing.T) {
@@ -259,10 +296,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test mult dim array string", func(t *testing.T) {
@@ -284,10 +325,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test array bool", func(t *testing.T) {
@@ -310,10 +355,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test mult dim array  bool", func(t *testing.T) {
@@ -336,10 +385,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test array float", func(t *testing.T) {
@@ -362,10 +415,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("Test mult dim array  float", func(t *testing.T) {
@@ -388,10 +445,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 	t.Run("failing Case identifier", func(t *testing.T) {
@@ -414,10 +475,14 @@ func TestLexerTypes(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 }
@@ -443,10 +508,14 @@ func TestLexerFuncs(t *testing.T) {
 			// stop the test
 			return
 		}
+		er := false
 		for i, v := range expectedResult {
 			if v != result[i] {
-				t.Errorf("Expected %s, got %s", result[i], v)
+				er = true
 			}
+		}
+		if er {
+			t.Errorf("Expected %s, got %s", strings.Join(expectedResult, " "), strings.Join(result, " "))
 		}
 	})
 }

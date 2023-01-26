@@ -56,7 +56,7 @@ const (
 	DOUBLE = "double"
 
 	// Identifier
-	ID = "ID"
+	ID = "id"
 
 	// PTR
 	PTR  = "#"

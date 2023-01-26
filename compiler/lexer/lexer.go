@@ -66,6 +66,14 @@ func (lexer *Lexer) NextToken() tokenizer.Token {
 		token = tokenizer.Token{Type: tokenizer.DIVIDE, Literal: string(lexer.Ch)}
 	case '%':
 		token = tokenizer.Token{Type: tokenizer.MODULO, Literal: string(lexer.Ch)}
+	case "'"[0]:
+		lexer.ReadChar()
+		token = tokenizer.Token{Type: tokenizer.CHAR, Literal: lexer.ReadIdentifier()}
+		lexer.ReadChar()
+	case '"':
+		lexer.ReadChar()
+		token = tokenizer.Token{Type: tokenizer.STRING, Literal: lexer.ReadIdentifier()}
+		lexer.ReadChar()
 	case '!':
 		if lexer.PeekChar() == '=' {
 			lexer.ReadChar()
@@ -81,19 +89,19 @@ func (lexer *Lexer) NextToken() tokenizer.Token {
 			token = tokenizer.Token{Type: tokenizer.ADDR, Literal: ""}
 		}
 
-	case '|' :
+	case '|':
 		if lexer.PeekChar() == '|' {
 			lexer.ReadChar()
 			token = tokenizer.Token{Type: tokenizer.OR, Literal: "||"}
 		}
-	case '=' :
+	case '=':
 		if lexer.PeekChar() == '=' {
 			lexer.ReadChar()
 			token = tokenizer.Token{Type: tokenizer.EQ, Literal: "=="}
 		} else {
 			token = tokenizer.Token{Type: tokenizer.ASSIGN, Literal: "="}
 		}
-	case '>' :
+	case '>':
 		if lexer.PeekChar() == '=' {
 			lexer.ReadChar()
 			token = tokenizer.Token{Type: tokenizer.MOREEQ, Literal: ">="}
@@ -101,7 +109,7 @@ func (lexer *Lexer) NextToken() tokenizer.Token {
 			token = tokenizer.Token{Type: tokenizer.MORETHAN, Literal: string(lexer.Ch)}
 		}
 
-	case '<' :
+	case '<':
 		if lexer.PeekChar() == '=' {
 			lexer.ReadChar()
 			token = tokenizer.Token{Type: tokenizer.LESSEQ, Literal: "<="}
@@ -109,14 +117,14 @@ func (lexer *Lexer) NextToken() tokenizer.Token {
 			token = tokenizer.Token{Type: tokenizer.LESSTHAN, Literal: string(lexer.Ch)}
 		}
 
-	case '*' :
+	case '*':
 		if lexer.PeekChar() == '*' {
 			lexer.ReadChar()
 			token = tokenizer.Token{Type: tokenizer.POWER, Literal: "**"}
 		} else {
 			token = tokenizer.Token{Type: tokenizer.MULTIPLY, Literal: string(lexer.Ch)}
 		}
-		
+
 	default:
 		if isValidNumber(lexer.Ch) {
 			nbr := lexer.ReadNumber()

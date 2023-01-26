@@ -66,59 +66,59 @@ func (lexer *Lexer) NextToken() tokenizer.Token {
 		token = tokenizer.Token{Type: tokenizer.DIVIDE, Literal: string(lexer.Ch)}
 	case '%':
 		token = tokenizer.Token{Type: tokenizer.MODULO, Literal: string(lexer.Ch)}
+	case '!':
+		if lexer.PeekChar() == '=' {
+			lexer.ReadChar()
+			token = tokenizer.Token{Type: tokenizer.NEQ, Literal: "!="}
+		} else {
+			token = tokenizer.Token{Type: tokenizer.NOT, Literal: "!"}
+		}
+	case '&':
+		if lexer.PeekChar() == '&' {
+			lexer.ReadChar()
+			token = tokenizer.Token{Type: tokenizer.AND, Literal: "&&"}
+		} else {
+			token = tokenizer.Token{Type: tokenizer.ADDR, Literal: ""}
+		}
 
-	default:
-
-		if lexer.Ch == '!' {
-			if lexer.PeekChar() == '=' {
-				lexer.ReadChar()
-				token = tokenizer.Token{Type: tokenizer.NEQ, Literal: "!="}
-			} else {
-				token = tokenizer.Token{Type: tokenizer.NOT, Literal: "!"}
-			}
-		} else if lexer.Ch == '&' {
-			if lexer.PeekChar() == '&' {
-				lexer.ReadChar()
-				token = tokenizer.Token{Type: tokenizer.AND, Literal: "&&"}
-			} else {
-				token = tokenizer.Token{Type: tokenizer.ADDR, Literal: ""}
-			}
-
-		} else if lexer.Ch == '|' && lexer.PeekChar() == '|' {
+	case '|' :
+		if lexer.PeekChar() == '|' {
 			lexer.ReadChar()
 			token = tokenizer.Token{Type: tokenizer.OR, Literal: "||"}
+		}
+	case '=' :
+		if lexer.PeekChar() == '=' {
+			lexer.ReadChar()
+			token = tokenizer.Token{Type: tokenizer.EQ, Literal: "=="}
+		} else {
+			token = tokenizer.Token{Type: tokenizer.ASSIGN, Literal: "="}
+		}
+	case '>' :
+		if lexer.PeekChar() == '=' {
+			lexer.ReadChar()
+			token = tokenizer.Token{Type: tokenizer.MOREEQ, Literal: ">="}
+		} else {
+			token = tokenizer.Token{Type: tokenizer.MORETHAN, Literal: string(lexer.Ch)}
+		}
 
-		} else if lexer.Ch == '=' {
-			if lexer.PeekChar() == '=' {
-				lexer.ReadChar()
-				token = tokenizer.Token{Type: tokenizer.EQ, Literal: "=="}
-			} else {
-				token = tokenizer.Token{Type: tokenizer.ASSIGN, Literal: "="}
-			}
-		} else if lexer.Ch == '>' {
-			if lexer.PeekChar() == '=' {
-				lexer.ReadChar()
-				token = tokenizer.Token{Type: tokenizer.MOREEQ, Literal: ">="}
-			} else {
-				token = tokenizer.Token{Type: tokenizer.MORETHAN, Literal: string(lexer.Ch)}
-			}
+	case '<' :
+		if lexer.PeekChar() == '=' {
+			lexer.ReadChar()
+			token = tokenizer.Token{Type: tokenizer.LESSEQ, Literal: "<="}
+		} else {
+			token = tokenizer.Token{Type: tokenizer.LESSTHAN, Literal: string(lexer.Ch)}
+		}
 
-		} else if lexer.Ch == '<' {
-			if lexer.PeekChar() == '=' {
-				lexer.ReadChar()
-				token = tokenizer.Token{Type: tokenizer.LESSEQ, Literal: "<="}
-			} else {
-				token = tokenizer.Token{Type: tokenizer.LESSTHAN, Literal: string(lexer.Ch)}
-			}
-
-		} else if lexer.Ch == '*' {
-			if lexer.PeekChar() == '*' {
-				lexer.ReadChar()
-				token = tokenizer.Token{Type: tokenizer.POWER, Literal: "**"}
-			} else {
-				token = tokenizer.Token{Type: tokenizer.MULTIPLY, Literal: string(lexer.Ch)}
-			}
-		} else if isValidNumber(lexer.Ch) {
+	case '*' :
+		if lexer.PeekChar() == '*' {
+			lexer.ReadChar()
+			token = tokenizer.Token{Type: tokenizer.POWER, Literal: "**"}
+		} else {
+			token = tokenizer.Token{Type: tokenizer.MULTIPLY, Literal: string(lexer.Ch)}
+		}
+		
+	default:
+		if isValidNumber(lexer.Ch) {
 			nbr := lexer.ReadNumber()
 			var nbr_type tokenizer.TokenType = "number"
 			token = tokenizer.Token{Type: nbr_type, Literal: nbr}

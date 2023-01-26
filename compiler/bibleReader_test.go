@@ -42,7 +42,7 @@ func TestLexerTypes(t *testing.T) {
 		l := lexer.New(code)
 
 		var result []string
-		expectedResult := []string{"char", "a", "=", "'a'"}
+		expectedResult := []string{"char", "a", "=", "a"}
 
 		for {
 			token := l.NextToken()
@@ -71,7 +71,7 @@ func TestLexerTypes(t *testing.T) {
 		l := lexer.New(code)
 
 		var result []string
-		expectedResult := []string{"string", "aa", "=", `"er12"`}
+		expectedResult := []string{"string", "aa", "=", `er12`}
 
 		for {
 			token := l.NextToken()
@@ -277,11 +277,11 @@ func TestLexerTypes(t *testing.T) {
 		}
 	})
 	t.Run("Test array string", func(t *testing.T) {
-		code := "string[] aa = [\"hello\",\"world\"]"
+		code := "string[] aa = [hello,world]"
 		l := lexer.New(code)
 
 		var result []string
-		expectedResult := []string{"string", "[", "]", "aa", "=", "[", "\"hello\"", ",", "\"world\"", "]"}
+		expectedResult := []string{"string", "[", "]", "aa", "=", "[", "hello", ",", "world", "]"}
 
 		for {
 			token := l.NextToken()
@@ -307,11 +307,11 @@ func TestLexerTypes(t *testing.T) {
 		}
 	})
 	t.Run("Test mult dim array string", func(t *testing.T) {
-		code := "string[][] aa = [[\"hello\",\"world\"],[\"hello\",\"world\"]]"
+		code := "string[][] aa = [[hello,world],[hello,world]]"
 		l := lexer.New(code)
 
 		var result []string
-		expectedResult := []string{"string", "[", "]", "[", "]", "aa", "=", "[", "[", "\"hello\"", ",", "\"world\"", "]", ",", "[", "\"hello\"", ",", "\"world\"", "]", "]"}
+		expectedResult := []string{"string", "[", "]", "[", "]", "aa", "=", "[", "[", "hello", ",", "world", "]", ",", "[", "hello", ",", "world", "]", "]"}
 		for {
 			token := l.NextToken()
 			result = append(result, token.Literal)

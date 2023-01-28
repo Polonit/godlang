@@ -53,59 +53,59 @@ func TestLexerTypes(t *testing.T) {
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test simple array", func(t *testing.T) {
-		code := "int[] aa = [1,2,3,4,5]"
+		code := "[]int aa = []int{1,2,3,4,5}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"intArr", "id", "=", "intArr"}
-		expectedResult := []string{"int", "[", "]", "aa", "=", "[", "1", ",", "2", ",", "3", ",", "4", ",", "5", "]"}
+		expectedResult := []string{"[", "]", "int", "[", "]", "aa", "=", "[", "1", ",", "2", ",", "3", ",", "4", ",", "5", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test multi dim array", func(t *testing.T) {
-		code := "int[][] aa = [[1,2,3,4,5],[1,2,3,4,5]]"
+		code := "[][]int aa = []int{{1,2,3,4,5},{1,2,3,4,5}}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"intArr", "id", "=", "intArr"}
-		expectedResult := []string{"int", "[", "]", "[", "]", "aa", "=", "[", "[", "1", ",", "2", ",", "3", ",", "4", ",", "5", "]", ",", "[", "1", ",", "2", ",", "3", ",", "4", ",", "5", "]", "]"}
+		expectedResult := []string{"[", "]", "int", "[", "]", "aa", "=", "[", "[", "1", ",", "2", ",", "3", ",", "4", ",", "5", "]", ",", "[", "1", ",", "2", ",", "3", ",", "4", ",", "5", "]", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test array string", func(t *testing.T) {
-		code := "string[] aa = [hello,world]"
+		code := "[]string aa = []string{hello,world}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"stringArr", "id", "=", "stringArr"}
-		expectedResult := []string{"string", "[", "]", "aa", "=", "[", "hello", ",", "world", "]"}
+		expectedResult := []string{"[", "]", "string", "[", "]", "aa", "=", "[", "hello", ",", "world", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test mult dim array string", func(t *testing.T) {
-		code := "string[][] aa = [[hello,world],[hello,world]]"
+		code := "[][]string aa = [][]string{{hello,world},{hello,world}}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"stringArr", "id", "=", "stringArr"}
-		expectedResult := []string{"string", "[", "]", "[", "]", "aa", "=", "[", "[", "hello", ",", "world", "]", ",", "[", "hello", ",", "world", "]", "]"}
+		expectedResult := []string{"[", "]", "string", "[", "]", "aa", "=", "[", "[", "hello", ",", "world", "]", ",", "[", "hello", ",", "world", "]", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test array bool", func(t *testing.T) {
-		code := "bool[] aa = [true,false]"
+		code := "[]bool aa = []bool{true,false}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"boolArr", "id", "=", "boolArr"}
-		expectedResult := []string{"bool", "[", "]", "aa", "=", "[", "true", ",", "false", "]"}
+		expectedResult := []string{"[", "]", "bool", "[", "]", "aa", "=", "[", "true", ",", "false", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test mult dim array  bool", func(t *testing.T) {
-		code := "bool[][] aa = [[true,false],[false,true]]"
+		code := "[][]bool aa = [][]bool{{true,false},{false,true}}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"boolArr", "id", "=", "boolArr"}
-		expectedResult := []string{"bool", "[", "]", "[", "]", "aa", "=", "[", "[", "true", ",", "false", "]", ",", "[", "false", ",", "true", "]", "]"}
+		expectedResult := []string{"[", "]", "bool", "[", "]", "aa", "=", "[", "[", "true", ",", "false", "]", ",", "[", "false", ",", "true", "]", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test array float", func(t *testing.T) {
-		code := "float[] aa = [1.0,2.0]"
+		code := "[]float aa = []float{1.0,2.0}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"floatArr", "id", "=", "floatArr"}
-		expectedResult := []string{"float", "[", "]", "aa", "=", "[", "1.0", ",", "2.0", "]"}
+		expectedResult := []string{"[", "]", "float", "[", "]", "aa", "=", "[", "1.0", ",", "2.0", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("Test mult dim array  float", func(t *testing.T) {
-		code := "float[][] aa = [[1.0,2.0],[2.0,1.0]]"
+		code := "[][]float aa = [][]float{{1.0,2.0},{2.0,1.0}}"
 		// TODO Define expected types
 		expectedTypes := []tokenizer.TokenType{"floatArr", "id", "=", "floatArr"}
-		expectedResult := []string{"float", "[", "]", "[", "]", "aa", "=", "[", "[", "1.0", ",", "2.0", "]", ",", "[", "2.0", ",", "1.0", "]", "]"}
+		expectedResult := []string{"[", "]", "float", "[", "]", "aa", "=", "[", "[", "1.0", ",", "2.0", "]", ",", "[", "2.0", ",", "1.0", "]", "]"}
 		BodyOfTest(code, expectedTypes, expectedResult, t)
 	})
 	t.Run("failing Case identifier", func(t *testing.T) {
